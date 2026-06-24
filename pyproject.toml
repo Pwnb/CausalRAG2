@@ -1,0 +1,36 @@
+[build-system]
+requires = ["setuptools>=64"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "causalrag2"
+version = "0.1.0"
+description = "Causal, hierarchical graph retrieval-augmented generation"
+readme = "README.md"
+requires-python = ">=3.10"
+license = { text = "MIT" }
+dependencies = [
+    "numpy>=1.24",
+    "pandas>=2.0",
+    "pyarrow>=12.0",
+    "networkx>=3.1",
+    "openai>=1.68.0",
+    "python-dotenv>=1.0",
+]
+
+[project.optional-dependencies]
+# Better graph quality and retrieval; the pipeline runs without these too.
+full = [
+    "scikit-learn>=1.3",
+    "sentence-transformers>=2.2",
+    "igraph>=0.10",
+    "leidenalg>=0.10",
+]
+# Only needed to rebuild the HolisQA dataset (scripts/holisqa_*.py).
+data = [
+    "requests>=2.31",
+    "tqdm>=4.66",
+]
+
+[tool.setuptools]
+packages = ["causalrag2"]
